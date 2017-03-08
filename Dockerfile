@@ -31,9 +31,6 @@ ENV LANGUAGE ja_JP:ja
 
 RUN yum -y install kbd
 
-# editor install 90MB程度
-#RUN yum install -y vim
-
 ## dotnet core
 RUN yum -y install libunwind libicu
 RUN yum clean all
