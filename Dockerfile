@@ -53,3 +53,4 @@ RUN ln -s /opt/dotnet/dotnet /usr/local/bin
 #dotnet build
 #ASPNETCORE_URLS="http://*:2704" dotnet run
 #curl http://192.168.99.100:5000
+
