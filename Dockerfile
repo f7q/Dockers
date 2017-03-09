@@ -1,5 +1,6 @@
-﻿FROM centos:7
+FROM centos:7
 
+MAINTAINER f799 <kokudou330@gmail.com>
 # system update 50MB程度
 RUN yum -y update && yum clean all
 
@@ -7,29 +8,35 @@ RUN yum -y update && yum clean all
 RUN unlink /etc/localtime
 RUN ln -s /usr/share/zoneinfo/Japan /etc/localtime
 
-RUN yum reinstall -y glibc-common
-RUN yum reinstall -y glibc
+RUN yum reinstall -y glibc-common \
+                     glibc
 
 #RUN yum group install -y "Japanese Support"
 RUN localedef -f UTF-8 -i ja_JP ja_JP
 
-ENV LANG ja_JP.UTF-8
-ENV LC_CTYPE ja_JP.UTF-8
-ENV LC_NUMERIC ja_JP.UTF-8
-ENV LC_TIME ja_JP.UTF-8
-ENV LC_COLLATE ja_JP.UTF-8
-ENV LC_MONETARY ja_JP.UTF-8
-ENV LC_MESSAGES ja_JP.UTF-8
-ENV LC_PAPER ja_JP.UTF-8
-ENV LC_NAME ja_JP.UTF-8
-ENV LC_ADDRESS ja_JP.UTF-8
-ENV LC_TELEPHONE ja_JP.UTF-8
-ENV LC_MEASUREMENT ja_JP.UTF-8
-ENV LC_IDENTIFICATION ja_JP.UTF-8
-ENV LC_ALL ja_JP.UTF-8
-ENV LANGUAGE ja_JP:ja
+ENV LANG=ja_JP.UTF-8 \
+    LC_CTYPE=ja_JP.UTF-8 \
+    LC_NUMERIC=ja_JP.UTF-8 \
+    LC_TIME=ja_JP.UTF-8 \
+    LC_COLLATE=ja_JP.UTF-8 \
+    LC_MONETARY=ja_JP.UTF-8 \
+    LC_MESSAGES=ja_JP.UTF-8 \
+    LC_PAPER=ja_JP.UTF-8 \
+    LC_NAME=ja_JP.UTF-8 \
+    LC_ADDRESS=ja_JP.UTF-8 \
+    LC_TELEPHONE=ja_JP.UTF-8 \
+    LC_MEASUREMENT=ja_JP.UTF-8 \
+    LC_IDENTIFICATION=ja_JP.UTF-8 \
+    LC_ALL=ja_JP.UTF-8 \
+    LANGUAGE=ja_JP:ja \
+    PROJECT=/project
+RUN mkdir $PROJECT
+WORKDIR $PROJECT
 
 RUN yum -y install kbd
+
+# editor install 90MB程度
+#RUN yum install -y vim
 
 ## dotnet core
 RUN yum -y install libunwind libicu
@@ -51,4 +58,3 @@ RUN ln -s /opt/dotnet/dotnet /usr/local/bin
 #dotnet build
 #ASPNETCORE_URLS="http://*:2704" dotnet run
 #curl http://192.168.99.100:5000
-
