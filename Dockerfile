@@ -39,8 +39,6 @@ RUN curl -sSL -o dotnet_preview2_003131.tar.gz https://go.microsoft.com/fwlink/?
 RUN mkdir -p /opt/dotnet && tar zxf dotnet_preview2_003131.tar.gz -C /opt/dotnet
 RUN ln -s /opt/dotnet/dotnet /usr/local/bin
 
-RUN ln -s /opt/dotnet/dotnet /usr/local/bin
-
 #ENV DOTNET_SKIP_FIRST_TIME_EXPERIENCE true
 #ENV UGET_XMLDOC_MODE skip
 #ENV ASPNETCORE_ENVIROMENT=Development,Staging,Production
